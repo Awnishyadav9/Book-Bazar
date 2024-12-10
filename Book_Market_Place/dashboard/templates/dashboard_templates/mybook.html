@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    About
+{% endblock title %}
+
+
+{% block content %}
+    <div class='bg-gray-100 rounded-xl mt-6 px-6 py-12 '>
+        <h2 class='text-center text-2xl font-bold mb-12'>My Details </h2>
+        <form action="" method='post'>
+            {% csrf_token %}
+            <div class='grid grid-cols-2 gap-2'>
+                <div>{{signup_All_Data.username}}</div>
+                <div>{{signup_All_Data.username}}</div>
+            </div>
+            
+                
+        </form>
+    </div>
+    <div class='bg-gray-100 rounded-xl mt-6 px-6 py-12 '>
+        <h2 class='text-center text-2xl font-bold mb-12'>My Books </h2>
+        <div class='grid grid-cols-4 gap-2'>
+            
+            {% for book in user_All_Book %}
+                <div class='w-11/12 bg-white rounded-lg'>
+                    <a href="{% url 'book_Category:SingleBook' book.id %}">
+                        <div>
+                            <img src="{{book.image.url}}" alt="Book Image" class='rounded-t-xl object-cover w-full h-85'>
+                        </div>
+                        <div class='p-6 bg-white rounded-b-xl'>
+                            <h2 class='font-semibold text-2xl'>{{book.book_name}}</h2>
+                            <p class='text-gray-500 text-lg'><span class='font-medium'>Prices:</span>{{book.prices}}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+                
+        </div>
+    </div>
+
+{% endblock content %}
